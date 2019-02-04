@@ -218,6 +218,11 @@ namespace CppReadline {
         }
 
         auto &params = currentConsole->pimpl_->commands_[commandName].second;
+        if (params.empty()) {
+            rl_attempted_completion_over = 1;
+            return nullptr;
+        }
+
         if (params.at(0) == Console::COMPLETE_FILE) {
             return nullptr;
         }
